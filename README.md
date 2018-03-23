@@ -4,6 +4,7 @@
 ## Table of contents
 
 * [Setup](#user-content-setup)
+* [Deploying](#user-content-deploying)
 * [npm tasks](#user-content-npm-tasks)
 * [Running in dev mode](#user-content-running-client-in-dev-mode)
 * [Build (production)](#user-content-build-client-production)
@@ -21,6 +22,11 @@ Tested with node 8.
 ```sh
 npm install
 ```
+
+## Deploying
+
+Repo needs to be clean before running this.
+Commit everything and run `sh publish.sh` script.
 
 ## npm tasks
 
