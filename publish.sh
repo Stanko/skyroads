@@ -5,7 +5,7 @@ npm run build
 # Switch to gh-pages branch
 git checkout gh-pages
 # Copy everything from build to root
-cp ./build/* ./
+cp -r ./build/* ./
 # Commit with current time
 git add .
 git commit -a -m "Build deployed `date +'%Y-%m-%d %H:%M:%S'`"
