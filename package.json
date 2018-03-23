@@ -1,6 +1,6 @@
 {
-  "name": "marvin",
-  "version": "1.1.0",
+  "name": "skyroads",
+  "version": "1.0.0",
   "private": false,
   "license": "MIT",
   "main": "build/server.js",
@@ -72,22 +72,21 @@
     "redux": "^3.7.2",
     "redux-saga": "^0.16.0"
   },
-  "description": "Starter boilerplate for React and Redux, using Webpack 3",
+  "description": "SkyRoads clone in javascript",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/workco/marvin.git"
+    "url": "git+ssh://git@github.com/workco/skyroads.git"
   },
   "keywords": [
-    "react",
-    "redux",
-    "webpack2",
-    "boilerplate"
+    "skyroads",
+    "threejs",
+    "game"
   ],
   "author": "Stanko",
   "bugs": {
-    "url": "https://github.com/workco/marvin/issues"
+    "url": "https://github.com/workco/skyroads/issues"
   },
-  "homepage": "https://github.com/workco/marvin#readme",
+  "homepage": "https://github.com/workco/skyroads#readme",
   "prepush": [
     "npm run lint-hook --silent"
   ]

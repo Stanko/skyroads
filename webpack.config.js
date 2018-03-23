@@ -61,7 +61,8 @@ module.exports = {
   entry,
   output: {
     path: paths.build,
-    publicPath: '/',
+    // For deploying on github pages
+    publicPath: '/skyroads/',
     filename: outputFiles.client,
   },
   module: {
