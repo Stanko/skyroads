@@ -15,10 +15,7 @@ import 'index.scss';
 
 const store = configureStore().store;
 
-// When used with server dehydrated state "ReactDOM.hydrate" should be called
-const renderMethod = process.env.HYDRATE ? ReactDOM.hydrate : ReactDOM.render;
-
-renderMethod(
+ReactDOM.render(
   <AppContainer>
     <Provider store={ store }>
       <HashRouter>

@@ -20,8 +20,6 @@ Tested with node 8.
 
 ```sh
 npm install
-# Add eslint git hook
-npm run hook-add
 ```
 
 ## npm tasks
@@ -118,23 +116,6 @@ with some options overridden to our preferences.
 ```
 npm run lint
 ```
-
-### Linting Git hooks
-
-Linting pre-push hook is not enabled by default.
-It will prevent the push if lint task fails,
-but you need to add it manually by running:
-
-```
-npm run hook-add
-```
-
-To remove it, run this task:
-
-```
-npm run hook-remove
-```
-
 
 ### Importing images in CSS
 
