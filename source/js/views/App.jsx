@@ -6,7 +6,6 @@ import Menu from 'components/global/Menu';
 import Home from 'views/Home';
 import NotFound from 'views/NotFound';
 
-
 class App extends Component {
   render() {
     return (

@@ -1,7 +1,7 @@
 const outputFiles = {
-  client: 'client/client.js',
-  vendor: 'client/vendor.js',
-  css: 'client/style.css',
+  client: 'client/client-[hash].js',
+  vendor: 'client/vendor-[hash].js',
+  css: 'client/style-[hash].css',
 };
 
 module.exports = {
