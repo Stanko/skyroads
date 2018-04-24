@@ -1,0 +1,15 @@
+.Game {
+  background-image: url('../assets/img/bg/2x/8.png');
+  background-size: 100% auto;
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-color: $black;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+canvas {
+  display: block;
+}

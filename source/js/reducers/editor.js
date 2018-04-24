@@ -5,7 +5,7 @@ import {
 } from 'actions/editor';
 
 const TILES_PER_ROW = 7;
-const INITIAL_ROWS_COUNT = 20;
+const INITIAL_ROWS_COUNT = 100;
 
 const initMap = [];
 

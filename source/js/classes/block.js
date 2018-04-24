@@ -7,22 +7,15 @@ import {
   Shape,
 } from 'three';
 
-import { heights } from 'constants/block';
+import {
+  heights,
+  BLOCK_WIDTH,
+  BLOCK_LENGTH,
+  MIN_BLOCK_HEIGHT,
+} from 'constants/block';
 
-const BLOCK_WIDTH = 1;
-const BLOCK_LENGTH = 2;
+
 const TUNNEL_THICKNESS = 0.05;
-
-const MIN_HEIGHT = 0.1;
-
-
-// const special = {
-//   SUPPLIES: 'SUPPLIES',
-//   BOOST: 'BOOST',
-//   STICKY: 'STICKY',
-//   SLIPPERY: 'SLIPPERY',
-//   BURNING: 'BURNING',
-// };
 
 const points = 10;
 const angles = [];
@@ -107,7 +100,7 @@ function getSolidBlock(options = {
   const geometry = new BoxGeometry(BLOCK_WIDTH, BLOCK_LENGTH, height);
   const material = new MeshStandardMaterial({ color, wireframe: false });
 
-  const zOffset = (height / 2) - MIN_HEIGHT;
+  const zOffset = (height / 2) - MIN_BLOCK_HEIGHT;
 
   const mesh = new Mesh(geometry, material);
 
@@ -118,17 +111,15 @@ function getSolidBlock(options = {
 
 export default function getBlock(blockOptions = {
   color: 0x7777aa,
-  colorSecundary: 0x6666bb,
   floor: true,
   height: heights.BASE,
   tunnel: true,
-  // tunnelColors: [0x6666bb, 0x9999ff],
+  tunnelColors: [0x6666bb, 0x9999ff],
   // special: special.BURNING,
   special: null,
-  position: {
-    x: 0,
-    y: 0,
-  },
+}, position = {
+  x: 0,
+  y: 0,
 }) {
   const group = new Group();
 
@@ -141,14 +132,14 @@ export default function getBlock(blockOptions = {
 
     if (blockOptions.floor) {
       const floor = getSolidBlock({
-        height: MIN_HEIGHT,
+        height: MIN_BLOCK_HEIGHT,
         color: blockOptions.color,
       });
 
       group.add(floor);
     }
   } else {
-    const height = blockOptions.height + MIN_HEIGHT;
+    const height = blockOptions.height + MIN_BLOCK_HEIGHT;
 
     const block = getSolidBlock({
       height,
@@ -159,8 +150,8 @@ export default function getBlock(blockOptions = {
   }
 
 
-  group.position.x = blockOptions.position.x * BLOCK_WIDTH;
-  group.position.y = blockOptions.position.y * BLOCK_LENGTH;
+  group.position.x = position.x * BLOCK_WIDTH;
+  group.position.y = position.y * BLOCK_LENGTH;
 
   return group;
 }

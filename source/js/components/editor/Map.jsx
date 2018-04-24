@@ -25,6 +25,8 @@ export default class Map extends Component {
       map,
     } = this.props;
 
+    console.log(JSON.stringify(map, null, 2));
+
     return map.map((row, index) => {
       return (
         <div key={ index } className='Map-row'>

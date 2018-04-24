@@ -19,13 +19,18 @@
 }
 
 .Block-addButton {
+  background: #333;
   height: 100%;
   outline: none;
   width: 100%;
-  background: #333;
   // color: #fff;
 
   &:hover {
     background: #222;
   }
+}
+
+.Block-height {
+  display: flex;
+  justify-content: space-between;
 }

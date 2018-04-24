@@ -15,16 +15,14 @@ class App extends Component {
       <div className='App'>
         <Navigation />
 
-        <div className='Page'>
-          <Switch>
-            <Route exact path={ routeCodes.MAIN_MENU } component={ MainMenu } />
-            <Route exact path={ routeCodes.LEVEL_LIST } component={ LevelList } />
-            <Route exact path={ routeCodes.LEVEL } component={ Level } />
-            <Route exact path={ routeCodes.EDITOR_NEW } component={ Editor } />
-            <Route exact path={ routeCodes.EDITOR } component={ Editor } />
-            <Route path='*' component={ NotFound } />
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path={ routeCodes.MAIN_MENU } component={ MainMenu } />
+          <Route exact path={ routeCodes.LEVEL_LIST } component={ LevelList } />
+          <Route exact path={ routeCodes.LEVEL } component={ Level } />
+          <Route exact path={ routeCodes.EDITOR_NEW } component={ Editor } />
+          <Route exact path={ routeCodes.EDITOR } component={ Editor } />
+          <Route path='*' component={ NotFound } />
+        </Switch>
       </div>
     );
   }

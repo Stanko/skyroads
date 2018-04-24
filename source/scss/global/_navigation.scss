@@ -1,0 +1,15 @@
+.Navigation {
+  background: rgba($black, 0.5);
+  left: 0;
+  padding: 0 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.Navigation-link {
+  color: $white;
+  display: inline-block;
+  padding: 1rem 0.5rem;
+}

@@ -10,7 +10,7 @@ import SolidBlock from 'components/blocks/SolidBlock';
 
 const DEFAULT_BLOCK = {
   color: 0x7777aa,
-  tunnelColors: [0x3377aa, 0x9999ff],
+  tunnelColors: [0x7777aa, 0x333355],
   // height: heights.BASE,
   height: 0,
   tunnel: false,
@@ -43,7 +43,30 @@ export default class Block extends Component {
   }
 
   handleAddClick = () => {
-    this.updateBlock(DEFAULT_BLOCK);
+    const {
+      x,
+      y,
+    } = this.props;
+
+    let color = 0x7777aa;
+
+    // TMP color
+    if (y % 2 === 0) {
+      if (x % 2 === 0) {
+        color = 0x333355;
+      }
+    } else if (x % 2 === 1) {
+      color = 0x333355;
+    }
+
+    this.updateBlock({
+      ...DEFAULT_BLOCK,
+      color,
+    });
+  }
+
+  handleRemoveClick = () => {
+    this.updateBlock(null);
   }
 
   handleTunnelToggleClick = () => {
@@ -83,10 +106,10 @@ export default class Block extends Component {
 
   renderHeight() {
     return (
-      <div>
-        <button onClick={ this.handleSetHeightClick(heights.BASE) }>0</button>
-        <button onClick={ this.handleSetHeightClick(heights.HALF) }>0.5</button>
-        <button onClick={ this.handleSetHeightClick(heights.FULL) }>1</button>
+      <div className='Block-height'>
+        <button className='Block-heightButton' onClick={ this.handleSetHeightClick(heights.BASE) }>base</button>
+        <button className='Block-heightButton' onClick={ this.handleSetHeightClick(heights.HALF) }>half</button>
+        <button className='Block-heightButton' onClick={ this.handleSetHeightClick(heights.FULL) }>full</button>
       </div>
     );
   }
@@ -129,15 +152,20 @@ export default class Block extends Component {
               { this.renderHeight() }
 
               <button onClick={ this.handleTunnelToggleClick }>
-                t
+                tunnel
               </button>
 
               { block.tunnel &&
                 <div>
                   <button onClick={ this.handleFloorToggleClick }>
-                    f
+                    floor
                   </button>
                 </div> }
+              <div>
+                <button onClick={ this.handleRemoveClick }>
+                  remove
+                </button>
+              </div>
             </div>
             { this.renderSvg() }
           </Fragment> :
