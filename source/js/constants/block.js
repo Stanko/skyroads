@@ -14,6 +14,6 @@ export const specials = {
 
 
 export const BLOCK_WIDTH = 1;
-export const BLOCK_LENGTH = 2;
+export const BLOCK_LENGTH = 6;
 export const BLOCKS_PER_ROW = 7;
 export const MIN_BLOCK_HEIGHT = 0.1;

@@ -77,9 +77,12 @@ export default class Game extends Component {
     this.scene.add(this.sun);
     this.scene.add(this.sun.target);
 
-    // --- Player model
+    // Player model
     this.player = new Player();
     this.scene.add(this.player.model);
+
+    // Key map
+    this.keys = {};
 
     // Add canvas to dom
     this.gameDiv.appendChild(this.renderer.domElement);
@@ -94,7 +97,6 @@ export default class Game extends Component {
     // Event handlers
     window.addEventListener('resize', this.handleResize);
 
-    this.keys = {};
     window.addEventListener('keydown', this.handleKeyDown);
     window.addEventListener('keyup', this.handleKeyUp);
   }
@@ -122,20 +124,27 @@ export default class Game extends Component {
     this.keys[e.keyCode] = false;
   }
 
+  updateCameraAndLight(y) {
+    this.camera.position.y = y;
+    this.sun.position.y = y;
+    this.sun.target.position.y = y;
+  }
+
   animate = () => {
     const now = getTime();
     // and translating that to frames
     const delta = now - this.lastUpdate;
     const framesPassed = delta / FRAME_DURATION;
 
-    // --- GAME UPDATES
+    // GAME UPDATES
 
-    this.player.update(this.keys, framesPassed);
+    this.player.update(this.keys, now, framesPassed);
     // HUD
     // Collision detection
     // checkCollision(this.player.position, map);
+    this.updateCameraAndLight(this.player.model.position.y - 10);
 
-    // --- END GAME UPDATES
+    // END GAME UPDATES
 
     // Update time of the last update
     this.lastUpdate = now;

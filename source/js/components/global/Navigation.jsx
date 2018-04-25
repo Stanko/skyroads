@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { routeCodes } from 'constants/routes';
+import HUD from 'components/game/HUD';
 
 const menuItems = [
   {
@@ -38,6 +39,7 @@ export default class Navigation extends Component {
     return (
       <div className='Navigation'>
         { this.renderLinks() }
+        <HUD />
       </div>
     );
   }
