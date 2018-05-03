@@ -9,6 +9,7 @@ import {
 
 import {
   heights,
+  specialColors,
   BLOCK_WIDTH,
   BLOCK_LENGTH,
   MIN_BLOCK_HEIGHT,
@@ -133,7 +134,7 @@ export default function getBlock(blockOptions = {
     if (blockOptions.floor) {
       const floor = getSolidBlock({
         height: MIN_BLOCK_HEIGHT,
-        color: blockOptions.color,
+        color: blockOptions.special ? specialColors[blockOptions.special] : blockOptions.color,
       });
 
       group.add(floor);
@@ -143,7 +144,7 @@ export default function getBlock(blockOptions = {
 
     const block = getSolidBlock({
       height,
-      color: blockOptions.color,
+      color: blockOptions.special ? specialColors[blockOptions.special] : blockOptions.color,
     });
 
     group.add(block);

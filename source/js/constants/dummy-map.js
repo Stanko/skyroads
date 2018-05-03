@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { specials } from 'constants/block';
 
 const map = [
   [
@@ -11,7 +12,7 @@ const map = [
       "height": 0.5,
       "tunnel": false,
       "floor": true,
-      "special": null
+      "special": specials.SUPPLIES,
     },
     {
       "color": 7829418,
@@ -77,7 +78,7 @@ const map = [
       "height": 0.5,
       "tunnel": false,
       "floor": true,
-      "special": null
+      "special": specials.SUPPLIES,
     }
   ],
   [
@@ -90,7 +91,7 @@ const map = [
       "height": 1,
       "tunnel": false,
       "floor": true,
-      "special": null
+      "special": specials.BURNING,
     },
     {
       "color": 3355477,
@@ -156,7 +157,7 @@ const map = [
       "height": 1,
       "tunnel": false,
       "floor": true,
-      "special": null
+      "special": specials.BURNING,
     }
   ],
   [
@@ -261,7 +262,7 @@ const map = [
       "height": 0,
       "tunnel": false,
       "floor": true,
-      "special": null
+      "special": specials.SLIPPERY,
     },
     {
       "color": 7829418,
@@ -310,7 +311,7 @@ const map = [
       "height": 0,
       "tunnel": false,
       "floor": true,
-      "special": null
+      "special": specials.SLIPPERY,
     },
     {
       "color": 3355477,
@@ -339,7 +340,7 @@ const map = [
       "height": 0,
       "tunnel": false,
       "floor": true,
-      "special": null
+      "special": specials.SLIPPERY,
     },
     null,
     null,
@@ -442,7 +443,7 @@ const map = [
       "height": 0,
       "tunnel": false,
       "floor": true,
-      "special": null
+      "special": specials.STICKY,
     },
     {
       "color": 3355477,
@@ -508,7 +509,7 @@ const map = [
       "height": 0,
       "tunnel": false,
       "floor": true,
-      "special": null
+      "special": specials.BOOST,
     }
   ],
   [
@@ -521,7 +522,7 @@ const map = [
       "height": 0,
       "tunnel": false,
       "floor": true,
-      "special": null
+      "special": specials.STICKY,
     },
     {
       "color": 7829418,
@@ -587,7 +588,7 @@ const map = [
       "height": 0,
       "tunnel": false,
       "floor": true,
-      "special": null
+      "special": specials.BOOST,
     }
   ],
   [
@@ -600,7 +601,7 @@ const map = [
       "height": 0,
       "tunnel": false,
       "floor": true,
-      "special": null
+      "special": specials.STICKY,
     },
     {
       "color": 3355477,
@@ -666,7 +667,7 @@ const map = [
       "height": 0,
       "tunnel": false,
       "floor": true,
-      "special": null
+      "special": specials.BOOST,
     }
   ],
   [
