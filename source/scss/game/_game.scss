@@ -13,3 +13,27 @@
 canvas {
   display: block;
 }
+
+.Game-simulatorLabel {
+  background: $blue;
+  border-radius: 0.5rem;
+  bottom: 1rem;
+  color: $white;
+  cursor: pointer;
+  left: 1rem;
+  padding: 0.5rem 0.8rem;
+  position: absolute;
+  transition: background $time;
+
+  &:hover {
+    background: darken($blue, 10);
+  }
+}
+
+.Game-simulatorInput {
+  position: absolute;
+  height: 0;
+  width: 0;
+  opacity: 0;
+  pointer-events: none;
+}

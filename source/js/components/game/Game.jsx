@@ -9,6 +9,7 @@ import {
 import map from 'constants/dummy-map';
 import getBlock from 'classes/block';
 import Player from 'classes/player';
+import Simulator from 'classes/simulator';
 import {
   BLOCK_WIDTH,
   BLOCKS_PER_ROW,
@@ -99,12 +100,18 @@ export default class Game extends Component {
 
     window.addEventListener('keydown', this.handleKeyDown);
     window.addEventListener('keyup', this.handleKeyUp);
+
+    this.simulator = new Simulator(this.fileInputElement, this.setKeys);
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
     window.removeEventListener('keydown', this.handleKeyDown);
     window.removeEventListener('keyup', this.handleKeyUp);
+  }
+
+  setKeys = (keys) => {
+    this.keys = keys;
   }
 
   handleResize = () => {
@@ -178,6 +185,18 @@ export default class Game extends Component {
   render() {
     return (
       <div className='Game'>
+        <label
+          className='Game-simulatorLabel'
+          htmlFor='simulator-input'
+        >
+          Select file
+          <input
+            className='Game-simulatorInput'
+            type='file'
+            id='simulator-input'
+            ref={ el => this.fileInputElement = el }
+          />
+        </label>
         <div className='Game-canvasWrapper' ref={ el => this.gameDiv = el } />
       </div>
     );
