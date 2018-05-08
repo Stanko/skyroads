@@ -4,11 +4,9 @@ const keyNames = Object.keys(keyCodes);
 
 export default class Simulator {
   constructor(fileInputElement, setKeys) {
-    console.log(fileInputElement);
     fileInputElement.addEventListener('change', this.handleFileChange);
     this.fileInputElement = fileInputElement;
 
-    this.currentRow = 0;
     this.setKeys = setKeys;
   }
 
@@ -31,6 +29,7 @@ export default class Simulator {
 
     reader.onload = () => {
       this.setCommands(reader.result);
+      this.fileInputElement.value = '';
       this.start();
     };
 
@@ -60,6 +59,8 @@ export default class Simulator {
   }
 
   start() {
+    this.currentRow = 0;
+
     this.intervalID = setInterval(this.tick, 100);
   }
 }
