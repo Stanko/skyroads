@@ -42,6 +42,8 @@ const getMaxCanvasSize = () => {
 export default class Game extends Component {
   componentDidMount() {
     // Create scene
+    this.isEnd = false;
+    this.stopAnimation = false;
     this.scene = new Scene();
 
     const canvasSize = getMaxCanvasSize();
@@ -145,16 +147,31 @@ export default class Game extends Component {
 
     // GAME UPDATES
 
-    this.player.update(this.keys, now, framesPassed);
+    if (!this.isEnd) {
+      this.player.update(this.keys, now, framesPassed);
+    }
     // HUD
     // Collision detection
-    // checkCollision(this.player.position, map);
+    if (!this.isEnd) {
+      const collisionRes = this.player.checkCollision(map);
+      if (collisionRes.fall) {
+        this.isEnd = true;
+      }
+    }
     this.updateCameraAndLight(this.player.model.position.y - 10);
 
     // END GAME UPDATES
 
     // Update time of the last update
     this.lastUpdate = now;
+
+    if (this.isEnd && this.player.model.position.z > -1) {
+      this.player.model.position.z -= 0.007;
+    }
+
+    if (this.isEnd && this.player.model.position.z <= -1) {
+      this.stopAnimation = true;
+    }
 
     // TODO remove
     // this.camera.position.y += 0.1;
@@ -166,7 +183,9 @@ export default class Game extends Component {
     this.renderer.render(this.scene, this.camera);
 
     // Continue animation loop
-    requestAnimationFrame(this.animate);
+    if (!this.stopAnimation) {
+      requestAnimationFrame(this.animate);
+    }
   }
 
   renderMap() {

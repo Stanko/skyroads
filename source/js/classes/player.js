@@ -5,6 +5,7 @@ import {
   BLOCK_WIDTH,
   BLOCKS_PER_ROW,
   MIN_BLOCK_HEIGHT,
+  BLOCK_LENGTH,
 } from 'constants/block';
 import modelData from 'constants/spaceship.json';
 import keyCodes from 'constants/key-codes';
@@ -94,6 +95,24 @@ export default class Player {
 
   updateHUD() {
     this.hud.speedElement.innerHTML = Math.round(this.speed / SPEED_STEP);
+  }
+
+  checkCollision(map) {
+    // console.log('!!!!!!!!!');
+    // console.log(this.model.position);
+    // console.log('map');
+    // console.log(map);
+    const res = {
+      fall: false,
+      destroy: false,
+    };
+    const mapPositionY = Math.floor(this.model.position.y / BLOCK_LENGTH);
+    const mapPositionX = Math.floor(this.model.position.x);
+    // console.log(this.model.position);
+    if (!map[mapPositionY][mapPositionX] && this.model.position.z === 0.1) {
+      res.fall = true;
+    }
+    return res;
   }
 
   update(keys, now, framesPassed) {
