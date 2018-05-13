@@ -98,17 +98,14 @@ export default class Player {
   }
 
   checkCollision(map) {
-    // console.log('!!!!!!!!!');
-    // console.log(this.model.position);
-    // console.log('map');
-    // console.log(map);
     const res = {
       fall: false,
       destroy: false,
     };
+
     const mapPositionY = Math.floor(this.model.position.y / BLOCK_LENGTH);
     const mapPositionX = Math.floor(this.model.position.x);
-    // console.log(this.model.position);
+
     if (!map[mapPositionY][mapPositionX] && this.model.position.z === 0.1) {
       res.fall = true;
     }
