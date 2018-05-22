@@ -178,7 +178,7 @@ const map = [
         16724787,
         16742263
       ],
-      "height": 0,
+      "height": 0.5,
       "tunnel": false,
       "floor": true,
       "special": null
