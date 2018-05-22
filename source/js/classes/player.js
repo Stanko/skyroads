@@ -15,6 +15,7 @@ const KEY_DELAY = 100;
 const SPEED_STEP = 0.015;
 const MAX_SPEED = SPEED_STEP * 36;
 const MIN_SPEED = 0;
+// const MIN_HORIZONTAL_SPEED = SPEED_STEP;
 
 export default class Player {
   constructor() {
@@ -41,7 +42,7 @@ export default class Player {
     };
   }
 
-  jumpLogic(keys, framesPassed) {
+  jumpLogic(keys, framesPassed, map) {
     // Jumping logic
     if (keys[keyCodes.SPACE] && !this.jumping) {
       this.jumping = true;
@@ -52,6 +53,17 @@ export default class Player {
       this.jumping = false;
       this.bounceValue = 0;
       this.model.position.z = MIN_BLOCK_HEIGHT;
+    }
+
+    const mapPositionY = Math.floor(this.model.position.y / BLOCK_LENGTH);
+    const mapPositionX = Math.floor(this.model.position.x);
+
+    if (map[mapPositionY][mapPositionX]) {
+      if (this.model.position.z + this.bounceValue < map[mapPositionY][mapPositionX].height) {
+        this.jumping = false;
+        this.bounceValue = 0;
+        this.model.position.z = map[mapPositionY][mapPositionX].height;
+      }
     }
 
     this.model.position.z += this.bounceValue * framesPassed;
@@ -82,6 +94,12 @@ export default class Player {
     }
 
     this.model.position.y += this.speed * framesPassed;
+
+    // if (keys[keyCodes.LEFT]) {
+    //   this.model.position.x -= this.speed + MIN_HORIZONTAL_SPEED;
+    // } else if (keys[keyCodes.RIGHT]) {
+    //   this.model.position.x += this.speed + MIN_HORIZONTAL_SPEED;
+    // }
   }
 
   moveLogic(keys) {
@@ -109,11 +127,31 @@ export default class Player {
     if (!map[mapPositionY][mapPositionX] && this.model.position.z === 0.1) {
       res.fall = true;
     }
+
+    if (map[mapPositionY][mapPositionX]) {
+      if (!map[mapPositionY][mapPositionX].floor && this.model.position.z === 0.1) {
+        res.fall = true;
+      }
+
+      if (map[mapPositionY][mapPositionX].height > this.model.position.z) {
+        res.destroy = true;
+      }
+
+      if (map[mapPositionY][mapPositionX].tunnel) {
+        const leftWall = Math.floor(this.model.position.x);
+        const rightWall = Math.ceil(this.model.position.x);
+        if ((this.model.position.x < (leftWall + 0.2)) || (this.model.position.x > (rightWall - 0.2))) {
+          // add model width
+          res.destroy = true;
+        }
+      }
+    }
+
     return res;
   }
 
-  update(keys, now, framesPassed) {
-    this.jumpLogic(keys, framesPassed);
+  update(keys, now, framesPassed, map) {
+    this.jumpLogic(keys, framesPassed, map);
     this.speedLogic(keys, now, framesPassed);
     this.moveLogic(keys);
     this.updateHUD();

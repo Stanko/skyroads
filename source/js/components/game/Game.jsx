@@ -43,6 +43,7 @@ export default class Game extends Component {
   componentDidMount() {
     // Create scene
     this.isEnd = false;
+    this.destroy = false;
     this.stopAnimation = false;
     this.scene = new Scene();
 
@@ -148,7 +149,7 @@ export default class Game extends Component {
     // GAME UPDATES
 
     if (!this.isEnd) {
-      this.player.update(this.keys, now, framesPassed);
+      this.player.update(this.keys, now, framesPassed, map);
     }
     // HUD
     // Collision detection
@@ -156,6 +157,9 @@ export default class Game extends Component {
       const collisionRes = this.player.checkCollision(map);
       if (collisionRes.fall) {
         this.isEnd = true;
+      } else if (collisionRes.destroy) {
+        this.isEnd = true;
+        this.destroy = true;
       }
     }
     this.updateCameraAndLight(this.player.model.position.y - 10);
@@ -165,11 +169,17 @@ export default class Game extends Component {
     // Update time of the last update
     this.lastUpdate = now;
 
-    if (this.isEnd && this.player.model.position.z > -1) {
+    if (this.isEnd && this.player.model.position.z > -1 && !this.destroy) {
       this.player.model.position.z -= 0.007;
     }
 
     if (this.isEnd && this.player.model.position.z <= -1) {
+      this.stopAnimation = true;
+    }
+
+    if (this.destroy) {
+      // show destroy animation
+      alert('DESTROYED');
       this.stopAnimation = true;
     }
 
